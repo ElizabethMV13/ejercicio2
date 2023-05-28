@@ -7,12 +7,12 @@
         />
     <item
         android:id="@+id/itemFragment2"
-        android:title="Trabajadores"
-        android:icon="@drawable/trabajador"
+        android:title="Estudiantes"
+        android:icon="@drawable/book"
         />
     <item
         android:id="@+id/itemFragment3"
-        android:title="Estudiantes"
-        android:icon="@drawable/book"
+        android:title="Trabajadores"
+        android:icon="@drawable/trabajador"
         />
 </menu>

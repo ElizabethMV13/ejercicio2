@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.example.ejercicio2.model.EstudianteViewHolder
 import com.example.ejercicio2.model.StudentAdapter
 import com.example.ejercicio2.model.Student
 import com.example.ejercicio2.model.StudentApiService
