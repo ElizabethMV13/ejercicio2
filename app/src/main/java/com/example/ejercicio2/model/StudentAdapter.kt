@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ejercicio2.R
 
-class StudentAdapter (var context : Context, val listStudent:List<Student>):RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
+class StudentAdapter (var context : Context, private val listStudent:List<Student>):RecyclerView.Adapter<StudentAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -19,21 +19,21 @@ class StudentAdapter (var context : Context, val listStudent:List<Student>):Recy
         val img = itemView.findViewById<ImageView>(R.id.item_img)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var view= LayoutInflater.from(context).inflate(R.layout.item_personaje, parent,false)
+        var view= LayoutInflater.from(parent.context).inflate(R.layout.item_personaje, parent,false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Glide.with(context).load(listStudent[position].image).into(holder.img)
+        val estudiente = listStudent[position]
+        Glide.with(context).load(estudiente.image).into(holder.img)
 
-        holder.nombre.text = listStudent[position].nombre
-        holder.actor.text = listStudent[position].actor
+        holder.nombre.text = estudiente.name
+        holder.actor.text = estudiente.actor
 
     }
 
-    override fun getItemCount(): Int {
-        return listStudent.count()
-    }
+    override fun getItemCount() = listStudent.count()
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.ejercicio2.view.activities
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
@@ -10,8 +11,11 @@ import com.example.ejercicio2.SegundoFragment
 import com.example.ejercicio2.TerceroFragment
 import com.example.ejercicio2.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mp: MediaPlayer
 
     private lateinit var binding: ActivityMainBinding
     lateinit var  navegation :BottomNavigationView
@@ -54,6 +58,10 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        mp = MediaPlayer.create(this, R.raw.music)
+        mp.isLooping = true // Reproducir el audio de forma cíclica
+        mp.start()
+
         navegation = findViewById(R.id.navMenu)
         navegation.setOnNavigationItemSelectedListener(opNavMenu)
 
@@ -62,5 +70,37 @@ class MainActivity : AppCompatActivity() {
             setReorderingAllowed(true)
             addToBackStack("replacement")
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mp.start()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        mp.pause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mp.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mp.pause()
+        mp.start()
+        mp?.release()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        mp.start()
     }
 }

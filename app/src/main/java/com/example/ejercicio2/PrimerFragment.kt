@@ -1,10 +1,18 @@
 package com.example.ejercicio2
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Switch
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import com.google.android.material.switchmaterial.SwitchMaterial
 import androidx.fragment.app.Fragment
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +42,39 @@ class PrimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_primer, container, false)
+        val view = inflater.inflate(R.layout.fragment_primer, container, false)
+
+        val DarkModeS = view.findViewById<SwitchMaterial>(R.id.switchModo)
+        val DarkModeI = view.findViewById<ImageView>(R.id.imageModo)
+
+// Obtener el estado actual del modo
+        val currentNightMode = AppCompatDelegate.getDefaultNightMode()
+
+// Establecer el estado inicial del Switch según el modo actual
+        DarkModeS.isChecked = currentNightMode == AppCompatDelegate.MODE_NIGHT_YES
+
+        DarkModeS.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // El Switch está marcado (estado: true)
+                DarkModeS.text = getString(R.string.Modo1)
+                DarkModeI.setImageResource(R.drawable.nights)
+                println("mensaje2")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                // El Switch no está marcado (estado: false)
+                DarkModeS.text = getString(R.string.Modo2)
+                DarkModeI.setImageResource(R.drawable.sunn)
+                println("mensaje1")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            // Reiniciar la actividad para aplicar el cambio de modo
+            requireActivity().recreate()
+        }
+
+        return view
+
     }
+
 
     companion object {
         /**

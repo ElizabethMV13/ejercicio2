@@ -6,6 +6,11 @@
     <string name="estudiantes">Estudiantes</string>
     <string name="trabajadores">Trabajadores</string>
     <string name="title">Recycleview</string>
+    <string name="inicio">  Bienvenido</string>
+    <string name="nombre_e">Nombre del personaje: </string>
+    <string name="actor_e">Actor que lo interpreta: </string>
+    <string name="Modo1">Desactivar modo oscuro:</string>
+    <string name="Modo2">Activar modo oscuro:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -59,10 +59,18 @@ class SegundoFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerViewEstudent)
 
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         fetchStudentData()
 
         return view
+    }
+
+    private  fun showData(){
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = StudentAdapter(requireContext(),studentList)
+
+        }
+
     }
 
     private fun fetchStudentData() {
@@ -72,34 +80,36 @@ class SegundoFragment : Fragment() {
             .baseUrl("https://private-b21a12-ejercicio2estudiantes.apiary-mock.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(StudentApiService::class.java)
 
+        val api = retrofit.create(StudentApiService::class.java)
+
+        val call = api.getStudents()
 
         // Hacer la llamada a la API para obtener los datos de los estudiantes
-        var retroData = retrofit.getStudents().enqueue(object : Callback<List<Student>> {
+        var retroData = call.enqueue(object : Callback<List<Student>> {
             override fun onResponse(call: Call<List<Student>>, response: Response<List<Student>>) {
+                Log.d("exitoso","onResponse")
                 if (response.isSuccessful) {
+                    Log.d("exitoso1","onResponse")
                     val students = response.body()
                     students?.let {
                         // Agregar los estudiantes a la lista
                         studentList.addAll(students)
-
                         adapterStudent = StudentAdapter(requireContext(), students )
-
                         recyclerView.adapter = adapterStudent
-
-
                         Log.d("data", students.toString())
                     }
                 } else {
                     // Manejar el caso de respuesta no exitosa
+                    Log.d("exitoso2","onResponse")
                 }
             }
 
             override fun onFailure(call: Call<List<Student>>, t: Throwable) {
-                // Manejar el caso de error de la llamada
+                Log.d("falla","onFailures")
             }
         })
+
     }
 
 
