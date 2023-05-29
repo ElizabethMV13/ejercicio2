@@ -6,15 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="@color/teal_700"
-    android:padding="5dp"
+    android:padding="10dp"
     card_view:cardCornerRadius="15dp"
     card_view:cardBackgroundColor="@color/white"
-    card_view:cardElevation="2dp">
+    card_view:contentPadding="4dp"
+    android:layout_margin="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".MainActivity">
+            tools:context=".SegundoFragment">
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/item_img"
@@ -33,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    card_view:layout_constraintGuide_percent="0.9" />
+                    card_view:layout_constraintGuide_percent="0.96" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline6"
@@ -68,17 +69,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    card_view:layout_constraintGuide_percent="0.14285715" />
+                    card_view:layout_constraintGuide_percent="0.11" />
 
                 <TextView
                     android:id="@+id/item_nombre"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="97dp"
+                    android:layout_height="30dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="@string/actor_e"
                     android:gravity="center_vertical"
+                    android:text="@string/actor_e"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
                     card_view:layout_constraintBottom_toTopOf="@+id/guideline4"
                     card_view:layout_constraintEnd_toStartOf="@+id/guideline"
+                    card_view:layout_constraintHorizontal_bias="0.0"
                     card_view:layout_constraintStart_toStartOf="@+id/guideline6"
                     card_view:layout_constraintTop_toTopOf="@+id/guideline5" />
 
@@ -91,14 +95,40 @@
 
                 <TextView
                     android:id="@+id/item_actor"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
+                    android:layout_width="96dp"
+                    android:layout_height="31dp"
                     android:text="@string/actor_e"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
                     card_view:layout_constraintBottom_toTopOf="@+id/guideline8"
                     card_view:layout_constraintEnd_toStartOf="@+id/guideline"
+                    card_view:layout_constraintHorizontal_bias="0.0"
                     card_view:layout_constraintStart_toStartOf="@+id/guideline6"
-                    card_view:layout_constraintTop_toTopOf="@+id/guideline4" />
+                    card_view:layout_constraintTop_toTopOf="@+id/guideline4"
+                    card_view:layout_constraintVertical_bias="0.7" />
+
+                <TextView
+                    android:id="@+id/textnombre"
+                    android:layout_width="132dp"
+                    android:layout_height="36dp"
+                    android:text="TextView"
+                    card_view:layout_constraintBottom_toTopOf="@+id/guideline4"
+                    card_view:layout_constraintEnd_toStartOf="@+id/guideline"
+                    card_view:layout_constraintStart_toEndOf="@+id/item_nombre"
+                    card_view:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+                <TextView
+                    android:id="@+id/textactor"
+                    android:layout_width="132dp"
+                    android:layout_height="36dp"
+                    android:text="TextView"
+                    card_view:layout_constraintBottom_toTopOf="@+id/guideline8"
+                    card_view:layout_constraintEnd_toStartOf="@+id/guideline"
+                    card_view:layout_constraintHorizontal_bias="0.55"
+                    card_view:layout_constraintStart_toEndOf="@+id/item_actor"
+                    card_view:layout_constraintTop_toTopOf="@+id/guideline4"
+                    card_view:layout_constraintVertical_bias="0.4" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

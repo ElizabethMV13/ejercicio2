@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -88,26 +89,43 @@ class SegundoFragment : Fragment() {
         // Hacer la llamada a la API para obtener los datos de los estudiantes
         var retroData = call.enqueue(object : Callback<List<Student>> {
             override fun onResponse(call: Call<List<Student>>, response: Response<List<Student>>) {
-                Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
+                //Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
 
                 showData(response.body()!!)
                 if (response.isSuccessful) {
-                    Log.d("exitoso1","onResponse")
                     val students = response.body()
                     students?.let {
                         // Agregar los estudiantes a la lista
                         studentList.addAll(students)
                         adapterStudent = StudentAdapter(requireContext(), students )
                         recyclerView.adapter = adapterStudent
-                        Log.d("data", students.toString())
+                        //Log.d("data", students.toString())
                     }
                 } else {
-                    // Manejar el caso de respuesta no exitosa
-                    Log.d("exitoso2","onResponse")
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setTitle(R.string.titleError2)
+                        .setMessage(R.string.error2)
+                        .setPositiveButton(R.string.leyenda1) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+
+                    val dialog = builder.create()
+                    dialog.show()
                 }
             }
 
             override fun onFailure(call: Call<List<Student>>, t: Throwable) {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(R.string.titleError1)
+                    .setMessage(R.string.error1)
+                    .setPositiveButton(R.string.leyenda1) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+
+                val dialog = builder.create()
+                dialog.show()
+
+
                 Log.d("falla","onFailures")
             }
         })

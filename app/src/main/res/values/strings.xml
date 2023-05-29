@@ -11,6 +11,12 @@
     <string name="actor_e">Actor que lo interpreta: </string>
     <string name="Modo1">Desactivar modo oscuro:</string>
     <string name="Modo2">Activar modo oscuro:</string>
+    <string name="leyenda1">"Aceptar"</string>
+    <string name="titleError1">onFailure</string>
+    <string name="titleError2">response.isSuccessful is false</string>
+    <string name="error2">La respuesta de la solicitud HTTP no sea exitosa.. </string>
+
+    <string name="error1">Error durante la ejecución de la llamada. </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.ejercicio2.model
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,8 @@ class StudentAdapter (var context : Context, private val listStudent:List<Studen
 
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val nombre = itemView.findViewById<TextView>(R.id.item_nombre)
-        val actor = itemView.findViewById<TextView>(R.id.item_actor)
+        val nombre = itemView.findViewById<TextView>(R.id.textactor)
+        val actor = itemView.findViewById<TextView>(R.id.textactor)
         val img = itemView.findViewById<ImageView>(R.id.item_img)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,11 +25,11 @@ class StudentAdapter (var context : Context, private val listStudent:List<Studen
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val estudiente = listStudent[position]
-        Glide.with(context).load(estudiente.image).into(holder.img)
-
-        holder.nombre.text = estudiente.name
-        holder.actor.text = estudiente.actor
+        Log.d("exitoso ---------------","onResponse {${listStudent[position].actor}}")
+        val estudiante = listStudent[position]
+        Glide.with(context).load(estudiante.image).into(holder.img)
+        holder.nombre.text = estudiante.name
+        holder.actor.text = estudiante.actor
 
     }
 
