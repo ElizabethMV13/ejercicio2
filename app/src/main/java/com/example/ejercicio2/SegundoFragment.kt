@@ -64,7 +64,7 @@ class SegundoFragment : Fragment() {
         return view
     }
 
-    private  fun showData(){
+    private  fun showData(users: List<Student>){
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = StudentAdapter(requireContext(),studentList)
@@ -77,7 +77,7 @@ class SegundoFragment : Fragment() {
 
         // Crear una instancia de Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://private-b21a12-ejercicio2estudiantes.apiary-mock.com/")
+            .baseUrl("https://hp-api.onrender.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -88,7 +88,9 @@ class SegundoFragment : Fragment() {
         // Hacer la llamada a la API para obtener los datos de los estudiantes
         var retroData = call.enqueue(object : Callback<List<Student>> {
             override fun onResponse(call: Call<List<Student>>, response: Response<List<Student>>) {
-                Log.d("exitoso","onResponse")
+                Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
+
+                showData(response.body()!!)
                 if (response.isSuccessful) {
                     Log.d("exitoso1","onResponse")
                     val students = response.body()

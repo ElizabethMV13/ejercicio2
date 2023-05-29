@@ -4,6 +4,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface StudentApiService {
-    @GET("estudent/estudent_list")
+    @GET("api/characters/students")
     fun getStudents(): Call<List<Student>>
 }

@@ -47,10 +47,10 @@ class PrimerFragment : Fragment() {
         val DarkModeS = view.findViewById<SwitchMaterial>(R.id.switchModo)
         val DarkModeI = view.findViewById<ImageView>(R.id.imageModo)
 
-// Obtener el estado actual del modo
+        // Obtener el estado actual del modo
         val currentNightMode = AppCompatDelegate.getDefaultNightMode()
 
-// Establecer el estado inicial del Switch según el modo actual
+        // Establecer el estado inicial del Switch según el modo actual
         DarkModeS.isChecked = currentNightMode == AppCompatDelegate.MODE_NIGHT_YES
 
         DarkModeS.setOnCheckedChangeListener { _, isChecked ->
@@ -74,6 +74,8 @@ class PrimerFragment : Fragment() {
         return view
 
     }
+
+
 
 
     companion object {
