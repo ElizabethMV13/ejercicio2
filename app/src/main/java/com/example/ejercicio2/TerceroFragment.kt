@@ -1,10 +1,20 @@
 package com.example.ejercicio2
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ejercicio2.model.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +27,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class TerceroFragment : Fragment() {
+
+    private val staffList: MutableList<Staff> = mutableListOf()
+    lateinit var adapterStaff: StaffAdapter
+    lateinit var recyclerView: RecyclerView
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +49,82 @@ class TerceroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tercero, container, false)
+        val view = inflater.inflate(R.layout.fragment_tercero, container, false)
+
+        // Configurar el RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerViewEstudent)
+
+
+        fetchStudentData()
+
+        return view
+    }
+
+    private  fun showData(staff: List<Staff>){
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = StaffAdapter(requireContext(),staffList)
+
+        }
+
+    }
+
+    private fun fetchStudentData() {
+
+        // Crear una instancia de Retrofit
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://hp-api.onrender.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val api = retrofit.create(StaffApiService::class.java)
+
+        val call = api.getStaff()
+
+        // Hacer la llamada a la API para obtener los datos de los estudiantes
+        var retroData = call.enqueue(object : Callback<List<Staff>> {
+            override fun onResponse(call: Call<List<Staff>>, response: Response<List<Staff>>) {
+                //Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
+
+                showData(response.body()!!)
+                if (response.isSuccessful) {
+                    val staff = response.body()
+                    staff?.let {
+                        // Agregar los estudiantes a la lista
+                        staffList.addAll(staff)
+                        adapterStaff = StaffAdapter(requireContext(), staff )
+                        recyclerView.adapter = adapterStaff
+                        //Log.d("data", students.toString())
+                    }
+                } else {
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setTitle(R.string.titleError2)
+                        .setMessage(R.string.error2)
+                        .setPositiveButton(R.string.leyenda1) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+
+                    val dialog = builder.create()
+                    dialog.show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Staff>>, t: Throwable) {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(R.string.titleError1)
+                    .setMessage(R.string.error1)
+                    .setPositiveButton(R.string.leyenda1) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+
+                val dialog = builder.create()
+                dialog.show()
+
+
+                Log.d("falla","onFailures")
+            }
+        })
+
     }
 
     companion object {
