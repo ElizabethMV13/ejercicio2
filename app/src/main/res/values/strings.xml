@@ -5,16 +5,21 @@
     <string name="home">Home</string>
     <string name="estudiantes">Estudiantes</string>
     <string name="trabajadores">Trabajadores</string>
-    <string name="title">Recycleview</string>
+    <string name="title_e">Estudiantes de Hogwarts</string>
+    <string name="title_p">Personal de Hogwarts</string>
     <string name="inicio">  Bienvenido</string>
     <string name="nombre_e">Nombre del personaje: </string>
     <string name="actor_e">Actor que lo interpreta: </string>
+    <string name="house_e">Casa: </string>
     <string name="Modo1">Desactivar modo oscuro:</string>
     <string name="Modo2">Activar modo oscuro:</string>
     <string name="leyenda1">"Aceptar"</string>
     <string name="titleError1">onFailure</string>
     <string name="titleError2">response.isSuccessful is false</string>
     <string name="error2">La respuesta de la solicitud HTTP no sea exitosa.. </string>
+    <string name="sinactor">Sin nombre del actor  </string>
+    <string name="sinestudiante">Sin nombre del estudiante  </string>}
+    <string name="sinhouse">Sin casa asignada </string>
 
     <string name="error1">Error durante la ejecución de la llamada. </string>
     <!-- TODO: Remove or change this placeholder text -->

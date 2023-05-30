@@ -11,7 +11,13 @@
     <color name="nav_header">#5A1C31</color>
     <color name="background">#237C74</color>
     <color name="text">#4C5C5B</color>
-    <color name="card">#43A5A8</color>
+    <color name="text1">#AFBCBB</color>
+    <color name="text2">#F5F6F6</color>
+    <color name="card">#194D4E</color>
+    <color name="card_s">#194D4E</color>
+    <color name="card_g">#872922</color>
+    <color name="card_r">#34449F</color>
+    <color name="card_h">#AE870E</color>
     <color name="nav2">#872922</color>
     <color name="fondo">#DAC6A9</color>
 </resources>

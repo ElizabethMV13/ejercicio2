@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ejercicio2.model.StudentAdapter
+import com.example.ejercicio2.model.StudentsAdapter
 import com.example.ejercicio2.model.Student
 import com.example.ejercicio2.model.StudentApiService
 import retrofit2.Call
@@ -32,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
 class SegundoFragment : Fragment() {
 
     private val studentList: MutableList<Student> = mutableListOf()
-    lateinit var adapterStudent: StudentAdapter
+    lateinit var adapterStudent: StudentsAdapter
     lateinit var recyclerView: RecyclerView
 
     // TODO: Rename and change types of parameters
@@ -68,7 +68,7 @@ class SegundoFragment : Fragment() {
     private  fun showData(users: List<Student>){
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = StudentAdapter(requireContext(),studentList)
+            adapter = StudentsAdapter(requireContext(),studentList)
 
         }
 
@@ -97,7 +97,7 @@ class SegundoFragment : Fragment() {
                     students?.let {
                         // Agregar los estudiantes a la lista
                         studentList.addAll(students)
-                        adapterStudent = StudentAdapter(requireContext(), students )
+                        adapterStudent = StudentsAdapter(requireContext(), students )
                         recyclerView.adapter = adapterStudent
                         //Log.d("data", students.toString())
                     }
