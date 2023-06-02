@@ -25,14 +25,18 @@ class StudentsAdapter (var context : Context, private val listStudent:List<Stude
         val img = itemView.findViewById<ImageView>(R.id.item_img)
         val cardView =  itemView.findViewById<CardView>(R.id.card_personaje)
     }
+
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view= LayoutInflater.from(parent.context).inflate(R.layout.item_personaje, parent,false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("exitoso ---------------", "onResponse {${listStudent[position].actor}}")
-        Log.d("exitoso ---------------", "onResponse {${listStudent[position].house}}")
+        //Log.d("exitoso ---------------", "onResponse {${listStudent[position].actor}}")
+        //Log.d("exitoso ---------------", "onResponse {${listStudent[position].house}}")
         val estudiante = listStudent[position]
         if (estudiante.image == "") {
             holder.img.setImageResource(R.drawable.sunfoto)

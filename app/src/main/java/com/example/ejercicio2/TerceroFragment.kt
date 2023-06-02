@@ -1,10 +1,12 @@
 package com.example.ejercicio2
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [TerceroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TerceroFragment : Fragment() {
+class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
 
     private val staffList: MutableList<Staff> = mutableListOf()
     lateinit var adapterStaff: StaffAdapter
@@ -42,6 +44,10 @@ class TerceroFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+    }
+
+    override fun onClick(position: Int){
+        startActivity(Intent(requireContext(), VerPersonaje::class.java))
     }
 
     override fun onCreateView(
@@ -63,7 +69,7 @@ class TerceroFragment : Fragment() {
     private  fun showData(staff: List<Staff>){
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = StaffAdapter(requireContext(),staffList)
+            adapter = StaffAdapter(requireContext(),staffList,this@TerceroFragment)
 
         }
 
@@ -92,7 +98,7 @@ class TerceroFragment : Fragment() {
                     staff?.let {
                         // Agregar los estudiantes a la lista
                         staffList.addAll(staff)
-                        adapterStaff = StaffAdapter(requireContext(), staff )
+                        adapterStaff = StaffAdapter(requireContext(), staff,this@TerceroFragment )
                         recyclerView.adapter = adapterStaff
                         //Log.d("data", students.toString())
                     }

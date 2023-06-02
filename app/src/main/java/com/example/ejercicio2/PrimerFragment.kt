@@ -43,6 +43,8 @@ class PrimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_primer, container, false)
+        //----------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------
 
         val DarkModeS = view.findViewById<SwitchMaterial>(R.id.switchModo)
         val DarkModeI = view.findViewById<ImageView>(R.id.imageModo)
@@ -70,6 +72,14 @@ class PrimerFragment : Fragment() {
             // Reiniciar la actividad para aplicar el cambio de modo
             requireActivity().recreate()
         }
+
+        //----------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------
+
+        val MusicS = view.findViewById<SwitchMaterial>(R.id.switchAudio)
+        val MusicI = view.findViewById<ImageView>(R.id.imageAudio)
+
+
 
         return view
 

@@ -1,8 +1,9 @@
-package com.example.ejercicio2.view.activities
+package com.example.ejercicio2
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Adapter
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.ejercicio2.PrimerFragment
