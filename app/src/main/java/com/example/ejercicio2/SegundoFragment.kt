@@ -1,5 +1,6 @@
 package com.example.ejercicio2
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,9 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ejercicio2.model.StudentsAdapter
-import com.example.ejercicio2.model.Student
-import com.example.ejercicio2.model.StudentApiService
+import com.example.ejercicio2.model.student.Student
+import com.example.ejercicio2.model.student.StudentAdapter
+import com.example.ejercicio2.model.student.StudentApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,10 +30,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 
-class SegundoFragment : Fragment() {
+class SegundoFragment : Fragment(), StudentAdapter.ClickListener {
 
     private val studentList: MutableList<Student> = mutableListOf()
-    lateinit var adapterStudent: StudentsAdapter
+    lateinit var adapterStudent: StudentAdapter
     lateinit var recyclerView: RecyclerView
 
     // TODO: Rename and change types of parameters
@@ -47,7 +48,14 @@ class SegundoFragment : Fragment() {
         }
     }
 
+    override fun onClick(position: String){
+        //Log.d("MainActivity", "----------------------Valor de id: ${position}--------------------")
+        val intent =Intent(requireContext(), Details::class.java)
+        intent.putExtra("id", "$position")
+        intent.putExtra("fragment", 2)
 
+        startActivity(intent)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +76,7 @@ class SegundoFragment : Fragment() {
     private  fun showData(users: List<Student>){
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = StudentsAdapter(requireContext(),studentList)
+            adapter = StudentAdapter(requireContext(),studentList,this@SegundoFragment)
 
         }
 
@@ -87,17 +95,21 @@ class SegundoFragment : Fragment() {
         val call = api.getStudents()
 
         // Hacer la llamada a la API para obtener los datos de los estudiantes
-        var retroData = call.enqueue(object : Callback<List<Student>> {
-            override fun onResponse(call: Call<List<Student>>, response: Response<List<Student>>) {
+        var retroData = call.enqueue(object : Callback<ArrayList<Student>> {
+            override fun onResponse(
+                call: Call<ArrayList<Student>>,
+                response: Response<ArrayList<Student>>
+            ) {
                 //Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
 
                 showData(response.body()!!)
                 if (response.isSuccessful) {
                     val students = response.body()
+                    Log.d("MainActivity", "-----------Contenido de la respuesta: $students")
                     students?.let {
                         // Agregar los estudiantes a la lista
                         studentList.addAll(students)
-                        adapterStudent = StudentsAdapter(requireContext(), students )
+                        adapterStudent = StudentAdapter(requireContext(), studentList,this@SegundoFragment )
                         recyclerView.adapter = adapterStudent
                         //Log.d("data", students.toString())
                     }
@@ -114,7 +126,7 @@ class SegundoFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<Student>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Student>>, t: Throwable) {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle(R.string.titleError1)
                     .setMessage(R.string.error1)
@@ -124,7 +136,6 @@ class SegundoFragment : Fragment() {
 
                 val dialog = builder.create()
                 dialog.show()
-
 
                 Log.d("falla","onFailures")
             }

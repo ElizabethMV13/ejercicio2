@@ -15,11 +15,8 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".LigerStaff"
+            android:name=".Details"
             android:exported="false" />
-        <activity
-            android:name=".VerPersonaje"
-            android:exported="false"></activity>
         <activity
             android:name=".Splash"
             android:exported="true">

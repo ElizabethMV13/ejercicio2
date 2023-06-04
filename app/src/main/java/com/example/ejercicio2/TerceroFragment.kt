@@ -6,12 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ejercicio2.model.*
+import com.example.ejercicio2.model.staff.Staff
+import com.example.ejercicio2.model.staff.StaffAdapter
+import com.example.ejercicio2.model.staff.StaffApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,8 +47,8 @@ class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
         }
     }
 
-    override fun onClick(position: Int){
-        startActivity(Intent(requireContext(), VerPersonaje::class.java))
+    override fun onClick(position: String){
+        startActivity(Intent(requireContext(), Details::class.java).putExtra("fragment", 3).putExtra("id", position))
     }
 
     override fun onCreateView(
@@ -88,13 +89,17 @@ class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
         val call = api.getStaff()
 
         // Hacer la llamada a la API para obtener los datos de los estudiantes
-        var retroData = call.enqueue(object : Callback<List<Staff>> {
-            override fun onResponse(call: Call<List<Staff>>, response: Response<List<Staff>>) {
+        var retroData = call.enqueue(object : Callback<ArrayList<Staff>> {
+            override fun onResponse(
+                call: Call<ArrayList<Staff>>,
+                response: Response<ArrayList<Staff>>
+            ) {
                 //Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
 
                 showData(response.body()!!)
                 if (response.isSuccessful) {
                     val staff = response.body()
+                Log.d("MainActivity", "-----------Contenido de la respuesta: $staff")
                     staff?.let {
                         // Agregar los estudiantes a la lista
                         staffList.addAll(staff)
@@ -115,7 +120,7 @@ class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
                 }
             }
 
-            override fun onFailure(call: Call<List<Staff>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<Staff>>, t: Throwable) {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle(R.string.titleError1)
                     .setMessage(R.string.error1)

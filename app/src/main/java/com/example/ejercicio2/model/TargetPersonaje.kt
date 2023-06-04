@@ -1,7 +1,10 @@
 package com.example.ejercicio2.model
 
-class Staff (
-    val id:String,
+import com.google.gson.annotations.SerializedName
+
+data class TargetPersonaje(
+    @SerializedName("id")
+    var id: String? = null,
     val name:String,
     val species:String,
     val gender:String,
@@ -18,5 +21,4 @@ class Staff (
     val actor:String,
     val alive: Boolean,
     val image: String
-
 )
