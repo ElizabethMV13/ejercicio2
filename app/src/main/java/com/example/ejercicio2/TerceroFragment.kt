@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,7 +63,7 @@ class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
         recyclerView = view.findViewById(R.id.recyclerViewEstudent)
 
 
-        fetchStudentData()
+        fetchStudentData(view)
 
         return view
     }
@@ -76,7 +77,7 @@ class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
 
     }
 
-    private fun fetchStudentData() {
+    private fun fetchStudentData(view: View) {
 
         // Crear una instancia de Retrofit
         val retrofit = Retrofit.Builder()
@@ -94,12 +95,13 @@ class TerceroFragment : Fragment(), StaffAdapter.ClickListener {
                 call: Call<ArrayList<Staff>>,
                 response: Response<ArrayList<Staff>>
             ) {
+                view.findViewById<ProgressBar>(R.id.progressStaff).visibility = View.GONE
                 //Log.d("exitoso","onResponse {${response.body()!![0].actor}}")
 
                 showData(response.body()!!)
                 if (response.isSuccessful) {
                     val staff = response.body()
-                Log.d("MainActivity", "-----------Contenido de la respuesta: $staff")
+                    Log.d("MainActivity", "-----------Contenido de la respuesta: $staff")
                     staff?.let {
                         // Agregar los estudiantes a la lista
                         staffList.addAll(staff)

@@ -2,7 +2,6 @@ package com.example.ejercicio2.utils
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 object RetrofitService{
     private var INSTANCE: Retrofit? = null
 

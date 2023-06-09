@@ -50,46 +50,52 @@ class StudentAdapter(var context: Context, private val listStudent:List<Student>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val estudiante = listStudent[position]
 
-        if (estudiante.image == "") {
-            holder.img.setImageResource(R.drawable.sunfoto)
-        } else {
-            Glide.with(context).load(estudiante.image).into(holder.img)
-        }
+        if (estudiante.image == "") { holder.img.setImageResource(R.drawable.sunfoto)
+        } else { Glide.with(context).load(estudiante.image).into(holder.img) }
 
-        if (estudiante.name == "") {
-            holder.nombre.text = context.getString(R.string.sinestudiante)
-        } else {
-            holder.nombre.text = estudiante.name
-        }
+        if (estudiante.name == "") { holder.nombre.text = context.getString(R.string.sinestudiante)
+        } else { holder.nombre.text = estudiante.name }
 
 
-        if (estudiante.actor == "") {
-            holder.actor.text = context.getString(R.string.sinactor)
-        } else {
-            holder.actor.text = estudiante.actor
-        }
+        if (estudiante.actor == "") { holder.actor.text = context.getString(R.string.sinactor)
+        } else { holder.actor.text = estudiante.actor }
 
         val datoHouse = estudiante.house
 
         when (datoHouse) {
             "Slytherin" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_s))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_s))
                 holder.house.text = estudiante.house
             }
             "Gryffindor" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_g))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_g))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_g))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_g))
                 holder.house.text = estudiante.house
             }
             "Hufflepuff" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_h))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_h))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_h))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_h))
                 holder.house.text = estudiante.house
             }
             "Ravenclaw" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_r))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_r))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_r))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_r))
                 holder.house.text = estudiante.house
             }
             else -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_s))
                 holder.house.text = context.getString(R.string.sinhouse)
             }
 

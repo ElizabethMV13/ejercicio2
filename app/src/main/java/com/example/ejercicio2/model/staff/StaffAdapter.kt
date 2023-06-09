@@ -1,5 +1,6 @@
 package com.example.ejercicio2.model.staff
 
+
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -51,48 +52,55 @@ class StaffAdapter (var context : Context, private val listStaff:List<Staff>, va
     override fun getItemCount() = listStaff.count()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+
         val staff = listStaff[position]
 
-        if (staff.image == "") {
-            holder.img.setImageResource(R.drawable.sunfoto)
-        } else {
-            Glide.with(context).load(staff.image).into(holder.img)
-        }
+        if (staff.image == "") { holder.img.setImageResource(R.drawable.sunfoto)
+        } else { Glide.with(context).load(staff.image).into(holder.img) }
 
-        if (staff.name == "") {
-            holder.nombre.text = context.getString(R.string.sinestudiante)
-        } else {
-            holder.nombre.text = staff.name
-        }
+        if (staff.name == "") { holder.nombre.text = context.getString(R.string.sinestudiante)
+        } else { holder.nombre.text = staff.name }
 
-
-        if (staff.actor == "") {
-            holder.actor.text = context.getString(R.string.sinactor)
-        } else {
-            holder.actor.text = staff.actor
-        }
+        if (staff.actor == "") { holder.actor.text = context.getString(R.string.sinactor)
+        } else { holder.actor.text = staff.actor }
 
         val datoHouse = staff.house
 
         when (datoHouse) {
             "Slytherin" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_s))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_s))
                 holder.house.text = staff.house
             }
             "Gryffindor" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_g))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_g))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_g))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_g))
                 holder.house.text = staff.house
             }
             "Hufflepuff" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_h))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_h))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_h))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_h))
                 holder.house.text = staff.house
             }
             "Ravenclaw" -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card_r))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_r))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_r))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_r))
                 holder.house.text = staff.house
             }
             else -> {
                 holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.card))
+                holder.actor.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.nombre.setTextColor(ContextCompat.getColor(context,R.color.text_s))
+                holder.house.setTextColor(ContextCompat.getColor(context,R.color.text_s))
                 holder.house.text = context.getString(R.string.sinhouse)
             }
 
@@ -100,4 +108,5 @@ class StaffAdapter (var context : Context, private val listStaff:List<Staff>, va
 
 
     }
+
 }

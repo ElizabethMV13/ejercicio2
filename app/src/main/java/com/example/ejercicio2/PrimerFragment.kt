@@ -1,6 +1,7 @@
 package com.example.ejercicio2
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,19 @@ class PrimerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var audioControlListener: AudioControlListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is AudioControlListener) {
+            audioControlListener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        audioControlListener = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,19 +72,18 @@ class PrimerFragment : Fragment() {
         DarkModeS.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // El Switch está marcado (estado: true)
-                DarkModeS.text = getString(R.string.Modo1)
-                DarkModeI.setImageResource(R.drawable.nights)
+
+                DarkModeS.text = getString(R.string.Modo2)
                 println("mensaje2")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 // El Switch no está marcado (estado: false)
-                DarkModeS.text = getString(R.string.Modo2)
-                DarkModeI.setImageResource(R.drawable.sunn)
                 println("mensaje1")
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             // Reiniciar la actividad para aplicar el cambio de modo
             requireActivity().recreate()
+
         }
 
         //----------------------------------------------------------------------------------------------------
@@ -78,6 +91,19 @@ class PrimerFragment : Fragment() {
 
         val MusicS = view.findViewById<SwitchMaterial>(R.id.switchAudio)
         val MusicI = view.findViewById<ImageView>(R.id.imageAudio)
+
+        MusicS.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                audioControlListener?.pauseAudio()
+                MusicS.text = getString(R.string.Modo3)
+                MusicI.setImageResource(R.drawable.nomusic)
+            } else {
+                audioControlListener?.resumeAudio()
+                MusicS.text = getString(R.string.Modo4)
+                MusicI.setImageResource(R.drawable.music)
+
+            }
+        }
 
 
 

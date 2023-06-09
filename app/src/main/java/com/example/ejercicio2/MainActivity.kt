@@ -14,12 +14,14 @@ import com.example.ejercicio2.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatDelegate
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AudioControlListener {
 
     private lateinit var mp: MediaPlayer
 
     private lateinit var binding: ActivityMainBinding
     lateinit var  navegation :BottomNavigationView
+
+
 
     private val opNavMenu = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when(item.itemId){
@@ -57,9 +59,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+
+
         setContentView(binding.root)
 
-        mp = MediaPlayer.create(this, R.raw.music)
+        mp = MediaPlayer.create(this, R.raw.music2)
         mp.isLooping = true // Reproducir el audio de forma cíclica
         mp.start()
 
@@ -71,6 +75,15 @@ class MainActivity : AppCompatActivity() {
             setReorderingAllowed(true)
             addToBackStack("replacement")
         }
+
+
+
+    }
+
+
+    interface AudioControlListener {
+        fun pauseAudio()
+        fun resumeAudio()
     }
 
     override fun onStart() {
@@ -102,6 +115,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
+        mp.start()
+    }
+
+    override fun pauseAudio() {
+        mp.pause()
+    }
+
+    override fun resumeAudio() {
         mp.start()
     }
 }
