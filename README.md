@@ -2,14 +2,48 @@
 
 <h1># INDICE</h1>
 
+<h2>1. Elementos extras</h2>
+<h2>2. Requerimientos generales</h2>
+<h2>3. Ejercicio opcional</h2>
 
-<h2>1. Requerimientos generales</h2>
-<h2>2. Ejercicio opcional</h2>
-<h2>3. Elementos extras</h2>
+<h1>1. Elementos extras</h1>
+--> Se hizo uso de fragmentos para la creación de un menú inferior con button
+
+![menu](https://github.com/ElizabethMV13/ejercicio2/assets/93019559/1b47e5c9-23f2-4265-9c8b-8ba7b3b90ae6)
+
+--> Inserción y manejo de audio en MainActivity 
+
+Esto permite que el audio pueda estar presente en los 3 fragmentos correspondiente al menú
+
+--> Manejo del audio en el primer fragment por medio de un switch toggle, eso también permite modificar el texto e icono según ese pausado o en reproducción 
+
+![WhatsApp Image 2023-06-10 at 11 17 16 AM (2)](https://github.com/ElizabethMV13/ejercicio2/assets/93019559/9ab03d4c-dcfd-40d1-973f-3a44b3b4632c)
+![sinaudio](https://github.com/ElizabethMV13/ejercicio2/assets/93019559/7f971e3a-5927-43ab-a804-16c255e2567b)
+
+
+--> Se agrego uso de GIFs para hacer llamativo el splash 
+
+Esto se esto se usó en el slash (esto con el fin de no ver una imagen en plano) 
+![WhatsApp Image 2023-06-10 at 11 21 44 AM (1)](https://github.com/ElizabethMV13/ejercicio2/assets/93019559/17174c80-c204-444d-9158-66dacf122c31)
+
+
+--> Creación de APK (modificación del nombre del icono de la aplicación al descargarla).
+
+![WhatsApp Image 2023-06-10 at 11 53 04 AM](https://github.com/ElizabethMV13/ejercicio2/assets/93019559/2efc208a-41df-424a-b939-c74228368d8f)
+
+https://drive.google.com/drive/folders/1-LRy0awYDim-KKsxln0-_96GMTSyvizo?usp=sharing
+
+--> Uso de un switch toggle para activar y desactiva el modo oscuro
+
+![modoOsc](https://github.com/ElizabethMV13/ejercicio2/assets/93019559/43ec3e99-caeb-4361-ba8f-0c066246ba75)
+
+--> Modificación de estilos según la casa a la que pertenece y en caso de no tiene una asignada, se colocan colores por defecto (tanto en Recyclerview, como en la card individual)
+
+--> Se realizo la inserción de datos e imagen cuando el request no contenga ese valor ""
 
 
 
-<h1>1. Requerimientos generales</h1>
+<h1>2. Requerimientos generales</h1>
 
 Realizar una aplicación con Android Studio que consuma el API REST de Harry Potter ubicado en:
 
@@ -63,7 +97,7 @@ Ascendencia
  ```
 
 
-<h3>Consideraciones adicionales:</h3>
+<h3>3. Consideraciones adicionales:</h3>
 
 Se calificará que haya manejo de errores generales.
 Para este ejercicio el nivel mínimo de API será 23.
@@ -96,31 +130,3 @@ esta forma).
 entregarlo sin cumplir estos requerimientos, simplemente se tomará como no entregado y se calificará normalmente.
 
 
-<h1>3. Elementos extras</h1>
-
-
---> Manejo de recyclerView para el uso del target
-
---> Uso de Clases para el llenado de las recyclerView
-
-Por medio de una clase recupera los datos por medio de un listOf de les da formato y se visualiza en la opción de lisa de carreras
-
---> Inserción y manejo de audio en MainActivity
-
-El audio se muestra solo en esa ventana, se detiene al cerrar la app o presionar algunos de los botones del menú
-
---> Se agrego uso de GIFs
-
-Esto se esto se usó en el slash (esto con el fin de no ver una imagen en plano) y dentro de la view que se da en "Quienes somos"
-
---> Creación de APK
-
---> Se modifico el icono de la aplicación al descargarla
-
-No pude lograr ver mi app en mis dispositivos para debuggear, por lo que decidí realizar el APK para poder instalarlo y ver que todo funcionara bien
-
---> Inserción de imágenes por medio de una URL con GLIDE
-
-La imagen que se inserta en la respuesta del formulario es obtenida por internet, solo se necesita la URL 
-
---> envió y recepción de datos entre vistas por Parcelable implementación generador
